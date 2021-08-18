@@ -22,6 +22,8 @@ const appRoutes: Routes = [
   // component shows which component should be loaded
   // HomeComponent as the starter page
   { path: 'users', component: UsersComponent },
+  { path: 'users/:id', component: UserComponent },
+  // : -> shows that it is dynamic
   { path: 'servers', component: ServersComponent },
 ];
 

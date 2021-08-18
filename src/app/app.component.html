@@ -2,9 +2,24 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a routerLink="/">Home</a></li>
-        <li role="presentation"><a routerLink="/servers">Servers</a></li>
-        <li role="presentation"><a routerLink="/users">Users</a></li>
+        <li 
+          role="presentation" 
+          routerLinkActive="activeLink"
+          [routerLinkActiveOptions]="{exact: true}">
+          <!-- routerLinkActiveOptions needs a property binding because we have here not just one property link
+          if we pass {} a js object it will not work without []-->
+          <!-- you can add any name for this class and can attach it also for <a> tag-->
+          <a routerLink="/">Home</a></li>
+        <li 
+          role="presentation" 
+          routerLinkActive="activeLink">
+          <a routerLink="/servers">Servers</a>
+        </li>
+        <li 
+          role="presentation" 
+          routerLinkActive="activeLink">
+          <a routerLink="/users">Users</a>
+        </li>
         <!-- if we need to add a long path it is better to use binding method and for this case
         [routerLink]="'/users', 'something'"-->
       </ul>

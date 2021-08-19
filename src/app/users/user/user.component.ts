@@ -14,6 +14,10 @@ export class UserComponent implements OnInit, OnDestroy {
 // ActivatedRoute is special method of angular/route
   constructor(private route: ActivatedRoute) { }
 
+  ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe()
+  }
+
   ngOnInit() {
     // here we will get our user
     this.user = {

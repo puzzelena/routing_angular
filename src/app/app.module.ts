@@ -12,6 +12,7 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // appRoutes will hold an array because we will have multiples routes
 // each route is a js object in this array
@@ -30,7 +31,17 @@ const appRoutes: Routes = [
   children: [
     { path: '/:id', component: ServerComponent },
     { path: '/:id/edit', component: EditServerComponent },
-  ] }
+    // component loads specified component and its content
+  ] },
+  { path: 'not-found', component: PageNotFoundComponent},
+  { path: '**', redirectTo: '/not-found'}
+  // redirectTo redirects to another path
+  // ** this is wildcard route that catch all paths and the order is important here
+  // make sure that this generic route is the last one in the routes
+  // because routes pass from the top to the bottom
+  // if we write something wrong in the path it takes ** route and redirect it to
+  // not-found path with the component created PageNotFoundComponent
+
 ];
 
 @NgModule({
@@ -41,7 +52,8 @@ const appRoutes: Routes = [
     ServersComponent,
     UserComponent,
     EditServerComponent,
-    ServerComponent
+    ServerComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

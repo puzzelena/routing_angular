@@ -21,12 +21,16 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent }, // it will look like localhost:4200/users
   // component shows which component should be loaded
   // HomeComponent as the starter page
-  { path: 'users', component: UsersComponent },
-  { path: 'users/:id/:name', component: UserComponent },
+  { path: 'users', component: UsersComponent, 
+  children: [
+    { path: ':id/:name', component: UserComponent },
+  ] },
   // : -> shows that it is dynamic
-  { path: 'servers', component: ServersComponent },
-  { path: 'servers/:id', component: ServerComponent },
-  { path: 'servers/:id/edit', component: EditServerComponent },
+  { path: 'servers', component: ServersComponent,
+  children: [
+    { path: '/:id', component: ServerComponent },
+    { path: '/:id/edit', component: EditServerComponent },
+  ] }
 ];
 
 @NgModule({

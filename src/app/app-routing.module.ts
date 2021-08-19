@@ -15,22 +15,47 @@ import { UsersComponent } from "./users/users.component";
 
 const appRoutes: Routes = [
     // this structure always need a path that can be added at the end of the domain name
-    { path: '', component: HomeComponent }, // it will look like localhost:4200/users
+    { 
+        path: '', 
+        component: HomeComponent 
+    }, // it will look like localhost:4200/users
     // component shows which component should be loaded
     // HomeComponent as the starter page
-    { path: 'users', component: UsersComponent, 
+    { 
+        path: 'users', 
+        component: UsersComponent, 
     children: [
-      { path: ':id/:name', component: UserComponent },
-    ] },
+      { 
+        path: ':id/:name', 
+        component: UserComponent 
+      },
+    ]
+    },
     // : -> shows that it is dynamic
-    { path: 'servers', canActivate:[AuthGuard], component: ServersComponent,
+    { 
+        path: 'servers', 
+        //canActivate:[AuthGuard], 
+        canActivateChild: [AuthGuard],
+        component: ServersComponent,
     children: [
-      { path: '/:id', component: ServerComponent },
-      { path: '/:id/edit', component: EditServerComponent },
+      { 
+        path: '/:id', 
+        component: ServerComponent 
+      },
+      { 
+        path: '/:id/edit', 
+        component: EditServerComponent 
+      },
       // component loads specified component and its content
     ] },
-    { path: 'not-found', component: PageNotFoundComponent},
-    { path: '**', redirectTo: '/not-found'}
+    { 
+        path: 'not-found', 
+        component: PageNotFoundComponent
+    },
+    { 
+        path: '**', 
+        redirectTo: '/not-found'
+    }
     // redirectTo redirects to another path
     // ** this is wildcard route that catch all paths and the order is important here
     // make sure that this generic route is the last one in the routes
